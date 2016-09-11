@@ -151,6 +151,8 @@ import FloatOps._
     sm += body
     val res = sm(2, 3).size == 1 && sm(2, 3).find(_ == body).isDefined
     assert(res, s"Body not found in the right sector")
+    assert(sm.matrix.slice(0, 25).forall(_.size == 0), "matrix.slice(0, 25).forall(_.size == 0)")
+    assert(sm.matrix.slice(27, 63).forall(_.size == 0), "matrix.slice(27, 63).forall(_.size == 0)")
   }
 
 

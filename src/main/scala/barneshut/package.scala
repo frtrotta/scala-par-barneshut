@@ -217,7 +217,7 @@ package object barneshut {
       // TODO Do I strictly need to create a new SectorMatrix?
       val result = new SectorMatrix(boundaries, sectorPrecision)
       (0 until result.matrix.length).foreach(i => result.matrix(i) = this.matrix(i).combine(that.matrix(i)))
-      this
+      result
     }
 
     def toQuad(parallelism: Int): Quad = {
