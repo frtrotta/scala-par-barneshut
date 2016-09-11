@@ -48,8 +48,15 @@ package object barneshut {
     def massY: Float = centerY
     def mass: Float = 0.0f
     def total: Int = 0
-    //def insert(b: Body): Quad = Leaf(centerX, centerY, size, Seq()).insert(b)
     def insert(b: Body): Quad = Leaf(centerX, centerY, size, Seq(b))
+    /*
+      I am not convinced with this implementation, since it causes a different behaviour for adding a body to an
+      Empty from adding a body a Leaf of the same size. In particular, if the size is greater than minimumSize,
+      the Empty.insert returns a Leaf, while Leaf.insert returns a Fork: while this asymmetry?
+
+      def insert(b: Body): Quad = Leaf(centerX, centerY, size, Seq()).insert(b) seems a consistent implementation,
+      but the grade of this implementation is not maximum. Further investigation is needed
+     */
   }
 
   case class Fork(
