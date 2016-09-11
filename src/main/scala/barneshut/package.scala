@@ -216,7 +216,7 @@ package object barneshut {
     def combine(that: SectorMatrix): SectorMatrix = {
       // TODO Do I strictly need to create a new SectorMatrix?
       val result = new SectorMatrix(boundaries, sectorPrecision)
-      (0 until result.matrix.length).foreach(i => result.matrix(i) = this.matrix(i).combine(that.matrix(i)))
+      (0 until result.matrix.length).par.foreach(i => result.matrix(i) = this.matrix(i).combine(that.matrix(i)))
       result
     }
 
