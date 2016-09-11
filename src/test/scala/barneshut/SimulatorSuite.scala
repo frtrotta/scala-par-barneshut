@@ -68,9 +68,9 @@ class SimulatorSuite extends FunSuite {
     val max: Int = SECTOR_PRECISION * SECTOR_PRECISION - 2
     assert(sm.matrix.slice(1, max).forall(_.size == 0), "size 0 for all but first and last")
 
-    assert(sm.matrix(0).size != 0, "matrix(0).size")
+    assert(sm.matrix(0).size == 1, "matrix(0).size")
 
-    assert(sm.matrix(SECTOR_PRECISION * SECTOR_PRECISION - 1).size != 0, "matrix(SECTOR_PRECISION * SECTOR_PRECISION " +
+    assert(sm.matrix(SECTOR_PRECISION * SECTOR_PRECISION - 1).size == 1, "matrix(SECTOR_PRECISION * SECTOR_PRECISION " +
       "- 1).size")
   }
 }

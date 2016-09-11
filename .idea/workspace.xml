@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="05a40305-6668-4156-9390-f94e430fb0e8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/barneshut/package.scala" afterPath="$PROJECT_DIR$/src/main/scala/barneshut/package.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/barneshut/Simulator.scala" afterPath="$PROJECT_DIR$/src/main/scala/barneshut/Simulator.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/scala/barneshut/SimulatorSuite.scala" afterPath="$PROJECT_DIR$/src/test/scala/barneshut/SimulatorSuite.scala" />
     </list>
     <ignored path="parprog1-barneshut.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,20 +32,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Simulator.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Simulator.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/barneshut/Simulator.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="40" column="50" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="54" />
+            <state relative-caret-position="181">
+              <caret line="38" column="39" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="package.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/barneshut/package.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
+            <state relative-caret-position="46">
               <caret line="229" column="67" selection-start-line="229" selection-start-column="67" selection-end-line="229" selection-end-column="67" />
               <folding />
             </state>
@@ -54,8 +55,8 @@
       <file leaf-file-name="SimulatorSuite.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/scala/barneshut/SimulatorSuite.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="72" column="71" selection-start-line="72" selection-start-column="71" selection-end-line="72" selection-end-column="71" />
+            <state relative-caret-position="198">
+              <caret line="64" column="35" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -82,10 +83,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/test/scala/barneshut/SimulatorSuite.java" />
-        <option value="$PROJECT_DIR$/src/main/scala/barneshut/Simulator.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/barneshut/BarnesHutSuite.scala" />
-        <option value="$PROJECT_DIR$/src/test/scala/barneshut/SimulatorSuite.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/barneshut/package.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/barneshut/SimulatorSuite.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/barneshut/Simulator.scala" />
       </list>
     </option>
   </component>
@@ -644,7 +645,14 @@
       <option name="project" value="LOCAL" />
       <updated>1473619482631</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Parallel imoplementation for SectorMatrix.combine">
+      <created>1473619665401</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1473619665401</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -693,7 +701,8 @@
     <MESSAGE value="several bugs corrected. I'm still not sure of the Empty.insert implementation" />
     <MESSAGE value="Empty.insert completed for maximum grade" />
     <MESSAGE value="fixed a bug in SectorMatrix.combine" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed a bug in SectorMatrix.combine" />
+    <MESSAGE value="Parallel imoplementation for SectorMatrix.combine" />
+    <option name="LAST_COMMIT_MESSAGE" value="Parallel imoplementation for SectorMatrix.combine" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -750,22 +759,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/barneshut/SimulatorSuite.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="72" column="71" selection-start-line="72" selection-start-column="71" selection-end-line="72" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/barneshut/Simulator.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="40" column="50" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/barneshut/conctrees/ConcBuffer.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="106">
@@ -776,8 +769,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/barneshut/package.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
+        <state relative-caret-position="46">
           <caret line="229" column="67" selection-start-line="229" selection-start-column="67" selection-end-line="229" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/barneshut/SimulatorSuite.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="64" column="35" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/barneshut/Simulator.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="38" column="39" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="39" />
           <folding />
         </state>
       </provider>
