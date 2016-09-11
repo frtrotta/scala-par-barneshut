@@ -183,14 +183,27 @@ package object barneshut {
     for (i <- 0 until matrix.length) matrix(i) = new ConcBuffer
 
     def +=(b: Body): SectorMatrix = {
-      ???
+      var x = 0
+      var y = 0
+      while (b.x >= boundaries.minX + (x+1) * sectorSize) {
+        x += 1
+      }
+      while (b.y >= boundaries.minY + (y+1) * sectorSize) {
+        y += 1
+      }
+      if (x >= sectorPrecision) x = sectorPrecision - 1
+      if (y >= sectorPrecision) y = sectorPrecision - 1
+      matrix(y * sectorPrecision + x) += b
       this
     }
 
     def apply(x: Int, y: Int) = matrix(y * sectorPrecision + x)
 
     def combine(that: SectorMatrix): SectorMatrix = {
-      ???
+      // TODO Do I strictly need to create a new SectorMatrix?
+      val result = new SectorMatrix(boundaries, sectorPrecision)
+      (0 until result.matrix.length).foreach(i => result.matrix(i) = this.matrix(i).combine(that.matrix(i)))
+      this
     }
 
     def toQuad(parallelism: Int): Quad = {
