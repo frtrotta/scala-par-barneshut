@@ -130,6 +130,8 @@ package object barneshut {
 
   class Body(val mass: Float, val x: Float, val y: Float, val xspeed: Float, val yspeed: Float) {
 
+    override def toString: String = s"[mass: $mass, x: $x, y: $y, xspeed: $xspeed, yspeed: $yspeed]"
+
     def updated(quad: Quad): Body = {
       var netforcex = 0.0f
       var netforcey = 0.0f
@@ -214,10 +216,11 @@ package object barneshut {
     def apply(x: Int, y: Int) = matrix(y * sectorPrecision + x)
 
     def combine(that: SectorMatrix): SectorMatrix = {
-      // TODO Do I strictly need to create a new SectorMatrix?
-      val result = new SectorMatrix(boundaries, sectorPrecision)
-      (0 until result.matrix.length).par.foreach(i => result.matrix(i) = this.matrix(i).combine(that.matrix(i)))
-      result
+      val r = new SectorMatrix(boundaries, sectorPrecision)
+      (0 until r.matrix.length).par.foreach(i => r.matrix(i) = this.matrix(i).combine(that.matrix(i)))
+      r
+
+      // TODO Where and how should I use .result?
     }
 
     def toQuad(parallelism: Int): Quad = {

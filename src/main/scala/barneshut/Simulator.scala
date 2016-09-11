@@ -37,15 +37,9 @@ class Simulator(val taskSupport: TaskSupport, val timeStats: TimeStatistics) {
   def computeSectorMatrix(bodies: Seq[Body], boundaries: Boundaries): SectorMatrix = timeStats.timed("matrix") {
     val parBodies = bodies.par
     parBodies.tasksupport = taskSupport
-    //val z = new SectorMatrix(boundaries, SECTOR_PRECISION)
-    //parBodies.aggregate(z)((z, b) => z += b, _ combine _)
-    var i = 0
-    var w = new SectorMatrix(boundaries, SECTOR_PRECISION)
-    while (i < bodies.size) {
-      w = w += bodies(i)
-      i += 1
-    }
-    w
+    val z = new SectorMatrix(boundaries, SECTOR_PRECISION)
+    parBodies.aggregate(z)(_ += _, _ combine _)
+    // TODO Where and how should I use .result?
   }
 
   def computeQuad(sectorMatrix: SectorMatrix): Quad = timeStats.timed("quad") {
