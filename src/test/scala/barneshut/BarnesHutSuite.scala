@@ -32,6 +32,13 @@ import FloatOps._
     assert(quad.total == 0, s"${quad.total} should be 0")
   }
 
+  test("Empty: insertion of a body") {
+    val b = new Body(123f, 18f, 26f, 0f, 0f)
+    val quad = Empty(51f, 46.3f, minimumSize).insert(b)
+    assert(quad.total == 1, s"${quad.total} should be 1")
+    assert(quad match {case Leaf(_, _, _, _) => true; case _ => false}, "quad must be a leaf")
+  }
+
   test("Leaf with 1 body") {
     val b = new Body(123f, 18f, 26f, 0f, 0f)
     val quad = Leaf(17.5f, 27.5f, 5f, Seq(b))
@@ -40,6 +47,39 @@ import FloatOps._
     assert(quad.massX ~= 18f, s"${quad.massX} should be 18f")
     assert(quad.massY ~= 26f, s"${quad.massY} should be 26f")
     assert(quad.total == 1, s"${quad.total} should be 1")
+  }
+
+  test("Insertion in a leaf with size > minimumSize") {
+    val b = new Body(123f, minimumSize / 2, minimumSize / 2, 0f, 0f)
+    val quad = Leaf(0, 0, minimumSize * 2, Seq()).insert(b)
+    assert(quad.total == 1, s"Number of points do not match. total is ${quad.total}, while it should be 1")
+
+    quad match {
+      case Fork(nw, ne, sw, se) => {
+        nw match {
+          case Empty(_, _, _) => {}
+          case _ => fail(s"nw must be Empty, while it is $nw")
+        }
+
+        ne match {
+          case Empty(_, _, _) => {}
+          case _ => fail(s"ne must be Empty, while it is $ne")
+        }
+
+        sw match {
+          case Empty(_, _, _) => {}
+          case _ => fail(s"sw must be Empty, while it is $sw")
+        }
+
+        se match {
+          case Leaf(_, _, _, _) => assert(se.total === 1)
+          case _ => fail(s"se must be a Leaf, while it is $se")
+        }
+      }
+      case _ => fail(s"quad must be a Fork, while it is $quad")
+    }
+
+
   }
 
 
@@ -59,18 +99,19 @@ import FloatOps._
     assert(quad.total == 1, s"${quad.total} should be 1")
   }
 
-  test("Empty.insert(b) should return a Leaf with only that body") {
-    val quad = Empty(51f, 46.3f, 5f)
+  test("Empty.insert(b) should return a Leaf with only that body (in case of size <= minimumSize)") {
+    //val quad = Empty(51f, 46.3f, 5f)
+    val quad = Empty(51f, 46.3f, minimumSize)
     val b = new Body(3f, 54f, 46f, 0f, 0f)
     val inserted = quad.insert(b)
     inserted match {
       case Leaf(centerX, centerY, size, bodies) =>
         assert(centerX == 51f, s"$centerX should be 51f")
         assert(centerY == 46.3f, s"$centerY should be 46.3f")
-        assert(size == 5f, s"$size should be 5f")
+        assert(size == minimumSize, s"$size should be $minimumSize")
         assert(bodies == Seq(b), s"$bodies should contain only the inserted body")
       case _ =>
-        fail("Empty.insert() should have returned a Leaf, was $inserted")
+        fail(s"Empty.insert() should have returned a Leaf, was $inserted")
     }
   }
 
