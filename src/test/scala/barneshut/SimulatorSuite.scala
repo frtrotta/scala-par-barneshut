@@ -111,20 +111,20 @@ class SimulatorSuite extends FunSuite {
 
     val a1 = (a+= new Body(1, 1, 1, 0f, 0f))
     val d = a1 combine b
-    assert(d.size === 1)
+    assert(d.result.size === 1)
 
     val dd = d combine b
-    assert(dd.size === 1)
+    assert(dd.result.size === 1)
     val ddd = dd combine b
-    assert(ddd.size === 1)
+    assert(ddd.result.size === 1)
 
 
     val b1 = (b += new Body(1, 12, 12, 0f, 0f))
-    val a1b1 = (b1 combine a1).result
+    val a1b1 = (b1 combine a1)
 
     // TODO Where and how should I use .result?
 
-    assert(a1b1.size === 2)
+    assert(a1b1.result.size === 2)
 
   }
 }

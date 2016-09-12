@@ -56,6 +56,9 @@ package object barneshut {
 
       def insert(b: Body): Quad = Leaf(centerX, centerY, size, Seq()).insert(b) seems a consistent implementation,
       but the grade of this implementation is not maximum. Further investigation is needed
+
+      UPDATE: the forum post https://www.coursera.org/learn/parprog1/discussions/weeks/4/threads/DSPxjnAHEeacjA5pbfQDMQ
+      is very clear about the expected behaviour. "The idea is that leaves always contain exactly 1 body, unless the leaf's size is smaller than the threshold"
      */
   }
 
