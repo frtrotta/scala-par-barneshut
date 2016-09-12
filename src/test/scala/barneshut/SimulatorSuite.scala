@@ -103,28 +103,44 @@ class SimulatorSuite extends FunSuite {
       "- 1).size")
   }
 
-  test("never trust anybody") {
-    val a = new ConcBuffer[Body]
-    val b = new ConcBuffer[Body]
-    assert(a.size === 0)
-    assert(b.size === 0)
+  test("Unexpected size example (_no_ result invoked)") {
+    var a = new ConcBuffer[Body]
+    var b = new ConcBuffer[Body]
 
-    val a1 = (a+= new Body(1, 1, 1, 0f, 0f))
-    val d = a1 combine b
-    assert(d.result.size === 1)
+    a += new Body(1, 1, 1, 0f, 0f)
+    val oneBody = a combine b
+    assert(oneBody.size === 1)
 
-    val dd = d combine b
-    assert(dd.result.size === 1)
-    val ddd = dd combine b
-    assert(ddd.result.size === 1)
+    b += new Body(1, 12, 12, 0f, 0f)
+    val twoBodies = (a combine b)
 
+    assert(twoBodies.size != 2)
+    // The previous assertion must hold, because there was a prior call to size. See also following tests
+  }
 
-    val b1 = (b += new Body(1, 12, 12, 0f, 0f))
-    val a1b1 = (b1 combine a1)
+  test("Unexpected size example (result invoked)") {
+    var a = new ConcBuffer[Body]
+    var b = new ConcBuffer[Body]
 
-    // TODO Where and how should I use .result?
+    a += new Body(1, 1, 1, 0f, 0f)
+    val oneBody = a combine b
+    assert(oneBody.result.size === 1)
 
-    assert(a1b1.result.size === 2)
+    b += new Body(1, 12, 12, 0f, 0f)
+    val twoBodies = (a combine b)
 
+    assert(twoBodies.result.size != 2)
+    // The previous assertion must hold, because there was a prior call to size. See also following tests
+  }
+
+  test("Unexpected size example (no prior result)") {
+    var a = new ConcBuffer[Body]
+    var b = new ConcBuffer[Body]
+
+    a += new Body(1, 1, 1, 0f, 0f)
+    b += new Body(1, 12, 12, 0f, 0f)
+    val twoBodies = (a combine b)
+
+    assert(twoBodies.result.size === 2)
   }
 }
