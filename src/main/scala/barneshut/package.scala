@@ -222,8 +222,6 @@ package object barneshut {
       val r = new SectorMatrix(boundaries, sectorPrecision)
       (0 until r.matrix.length).par.foreach(i => r.matrix(i) = this.matrix(i).combine(that.matrix(i)))
       r
-
-      // TODO Where and how should I use .result?
     }
 
     def toQuad(parallelism: Int): Quad = {
